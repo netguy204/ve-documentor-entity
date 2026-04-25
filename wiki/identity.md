@@ -1,0 +1,33 @@
+---
+title: Identity
+created: 2026-04-25T12:40:46.014806+00:00
+updated: 2026-04-25T12:40:46.014806+00:00
+---
+
+# Identity
+
+## Who I Am
+
+<!-- Document who you are as this entity grows. Start minimal and fill in as you work. -->
+
+## Role
+
+Document your role here — your purpose, responsibilities, and scope.
+
+## Working Style
+
+<!-- Document how you approach work — methodologies, phase structures, decision patterns.
+     Update this as you discover your patterns. -->
+
+## Values
+
+<!-- Document what you optimize for — what tradeoffs you make, what you refuse to compromise on.
+     Update this as your values become clear through experience. -->
+
+## Hard-Won Lessons
+
+<!-- Principle-level lessons that would survive a complete change of codebase or project.
+     Target ~8–15 entries. Each entry should end with: See: [[domain/page]] or [[techniques/page]]
+     pointing to the mechanics page that holds the how-to details.
+     Adding here should be RARE. If you are adding multiple entries per session,
+     you are dumping mechanics — move them to domain/ or techniques/ instead. -->

@@ -1,0 +1,271 @@
+# Wiki Schema
+
+This document is the schema for your personal wiki — your persistent, compounding knowledge base.
+Read it at the start of each session to orient yourself. It tells you what goes where and how to maintain it.
+
+## Why This Wiki Exists
+
+Most agents rediscover knowledge from scratch each session. This wiki is different:
+it is a **persistent, compounding artifact**. When you learn something, integrate it
+here — not so you can retrieve it later (though you can), but so that future knowledge
+builds on current knowledge rather than replacing it.
+
+**The cross-references are the value.** A page that links to three related pages is
+worth more than three isolated pages. Connections compound. Orphaned pages decay.
+Maintaining the links is not bookkeeping — it is the primary work of wiki maintenance.
+
+## Directory Structure
+
+```
+wiki/
+├── wiki_schema.md    # This file — the schema and maintenance instructions
+├── index.md          # Content catalog — read this first to find relevant pages
+├── identity.md       # Who you are, your role, working style, values, hard-won lessons
+├── log.md            # Chronological session log
+├── SOP.md            # Standard Operating Procedures — role-specific startup actions
+├── domain/           # Domain knowledge pages (one per major topic or concept)
+├── projects/         # Per-project working notes and state
+├── techniques/       # Approaches, patterns, and tools you have learned to use well
+└── relationships/    # People, teams, and other entities you work with
+```
+
+### What Goes Where
+
+- **`index.md`** — The content catalog. Every page you create has a row here. Read this first.
+- **`identity.md`** — Who you are and what you value. Lean, curated, readable in one sitting. NOT a dumping ground for technical findings or mechanics.
+- **`log.md`** — Chronological record of sessions. Add an entry at the end of each session.
+- **`SOP.md`** — Standard Operating Procedures: role-specific startup and recurring actions. Empty by default; populate it as you learn your role's rhythms. Owned by the entity.
+- **`domain/`** — One page per major concept or topic. Captures concepts, relationships, key facts, open questions.
+- **`projects/`** — One page per project. Captures goals, constraints, current state, key decisions made.
+- **`techniques/`** — One page per approach or pattern. Captures what it is, when to use it, pitfalls, examples.
+- **`relationships/`** — One page per person, team, or entity. Captures who they are, what they do, how you work with them.
+
+## Page Conventions
+
+### Frontmatter
+
+Every page must have YAML frontmatter with at minimum:
+
+```yaml
+---
+title: Page Title
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+---
+```
+
+Update `updated` whenever you modify a page.
+
+### Wikilinks
+
+Use `[[page_name]]` for cross-references within the same directory level.
+Use `[[domain/topic]]` or `[[techniques/name]]` for cross-directory references.
+Wikilinks are compatible with Obsidian for human browsing.
+
+### Page Size
+
+Keep pages focused — one concept per page. When a page exceeds ~500 words and covers
+multiple separable concepts, split it into two pages and update the index.
+
+## What to Capture
+
+### `identity.md`
+
+Who you are and what you value. Lean, curated, readable in one sitting.
+**NOT a dumping ground** for technical findings, mechanics, or recipes.
+
+- **Who I Am**: What kind of entity you are, what you've done
+- **Role**: Your current purpose and responsibilities
+- **Working Style**: How you approach work — methodologies, phases, decision patterns
+- **Values**: What you optimize for, what tradeoffs you make, what you refuse to compromise on
+- **Hard-Won Lessons**: ~8–15 principle-level entries. Each ends with a `See:` link to the
+  mechanics page(s) where the how-to details live. Adding to this section should be **rare**.
+  If you are adding multiple entries per session, you are most likely dumping mechanics here.
+
+**The routing test for Hard-Won Lessons:** Would this principle still apply if the codebase,
+technology, or project changed completely? If yes → identity.md. If no → domain/ or techniques/.
+
+*Worked examples:*
+- "I learn fastest by writing a minimal failing case first." — codebase-independent → identity.md
+- "The savings-account ledger requires a debit before a credit on reversals." — project-specific
+  mechanics → domain/savings_ledger.md, with a `See:` link from any identity principle that
+  covers the broader lesson.
+
+**The `See:` convention:** Every Hard-Won Lessons entry that has a corresponding mechanics page
+should end with `See: [[domain/page_name]]` or `See: [[techniques/pattern_name]]`. The principle
+lives on identity.md; the mechanics live elsewhere. Neither duplicates the other.
+
+### `domain/` Pages
+
+One page per major concept. This is the **default home for technical findings and mechanics**
+— when you discover how something works, it goes here first. Capture:
+- What the concept is and how it works
+- How it relates to other concepts (use wikilinks)
+- Key facts you've discovered
+- Open questions you haven't resolved yet
+
+### `techniques/` Pages
+
+One page per approach or pattern. This is the **default home for recipes, procedures, and
+reusable patterns**. When identity.md Hard-Won Lessons reference a how-to, the details live
+here. Capture:
+- What it is and how to apply it
+- When to use it (and when not to)
+- Pitfalls and failure modes
+- Examples from your own experience
+
+### `projects/` Pages
+
+One page per project. Capture:
+- Goals and success criteria
+- Constraints and non-negotiables
+- Current state and what's been done
+- Key decisions made and why
+
+### `relationships/` Pages
+
+One page per person, team, or entity. Capture:
+- Who they are and what they do
+- How you work with them
+- Communication patterns and preferences
+- Anything that has surprised you
+
+### Snapshot files vs. log files
+
+A wiki page is one of two shapes — they do not mix.
+
+**Snapshot** — reflects current state only. When an item is resolved or
+removed, its entry is deleted. A reader sees exactly what is active right now
+by reading the page once.
+
+**Log** — append-only chronological record. Entries are never deleted; new
+entries are appended. The page is a history, not a current-state view.
+
+**Simple test:** Can a reader answer "what's the current state?" by reading
+the active section and nothing before it? Yes → snapshot. No → log.
+
+**Common trap:** Files named `active_*`, `in_flight_*`, `pending_*`, or
+`open_*` advertise snapshot shape, but agents often mark entries as
+"resolved" or "archived" and keep them in place, producing a log with a
+snapshot name. If a page has snapshot semantics, state the maintenance
+discipline explicitly in its header:
+
+> **Maintenance:** This is a snapshot page. Remove entries when they are
+> resolved; do not archive them here.
+
+### `log.md` — Session Log Format
+
+Add an entry at the end of every session using this format:
+
+```markdown
+## [YYYY-MM-DD] session | Brief one-line summary of the session
+
+### Task
+What you were asked to do.
+
+### What Happened
+What actually happened — key events, discoveries, decisions, failures.
+
+### Key Learnings
+What you will carry forward. Use wikilinks to reference pages you updated.
+```
+
+## Decision Rubric: Where Does This Finding Go?
+
+Before opening any wiki page, run this branching sequence:
+
+1. **Is this a project state update?** (goals changed, key decisions made, current status)
+   → **`projects/`** page for the relevant project.
+
+2. **Is this a relationship update?** (learned something about how to work with a person or team)
+   → **`relationships/`** page.
+
+3. **Is this a technique, recipe, or procedure?** (how to do something — steps, pitfalls, examples)
+   → **`techniques/`** page.
+
+4. **Is this a concept, fact, or domain mechanic?** (how something works, key facts, open questions)
+   → **`domain/`** page.
+
+5. **Is this a principle that would survive a complete change of codebase, technology, and project?**
+   (Apply the test: "Would this principle still apply if everything else changed?")
+   - Yes → **`identity.md`** Hard-Won Lessons, with a `See:` link to the domain/techniques page
+     that holds the mechanics.
+   - No → Back to step 3 or 4.
+
+**Identity.md is the last branch, not the first.** If you find yourself going straight to
+identity.md, pause and re-run the rubric from step 1.
+
+## Maintenance Workflow
+
+**Maintain the wiki during the session, not after.** When you learn something, update the relevant page immediately.
+The wiki is a natural byproduct of working, not a separate note-taking step.
+
+**Triggers for wiki updates:**
+
+- You encounter a new concept → create or update a `domain/` page
+- You apply a technique → create or update a `techniques/` page
+- You discover a mechanic was wrong → correct the `domain/` or `techniques/` page; only update
+  `identity.md` if the **principle itself** changed (apply the routing test: codebase-independent?)
+- You make a significant decision → update the relevant `projects/` page
+- You learn something about how to work with someone → update their `relationships/` page
+- A session ends → add a `log.md` entry
+
+**The most valuable content comes from adversity.** Failures, unexpected behaviors, corrected
+assumptions, and hard-won insights are what make your wiki valuable across sessions.
+Treat every failure as a wiki update trigger.
+
+## Operations
+
+**Ingest.** When something new happens — a new concept, a failure, a decision —
+integrate it into the wiki. Read the relevant pages first, then update them with
+new knowledge positioned relative to what you already knew. A single event may
+touch 3–5 pages. Each update should include or update at least one wikilink.
+
+**Query.** When you need to recall something, read `index.md` first to find
+relevant pages, then drill in. Good answers discovered during query — comparisons,
+analyses, connections — should be filed back as new or updated pages.
+Explorations compound in the wiki just like ingested knowledge does.
+
+**Lint.** Periodically health-check your wiki:
+- Pages that reference a concept but lack a corresponding page → create the page
+- Pages with no inbound links (orphans) → link from related pages or `index.md`
+- Stale claims that later sessions have superseded → update or flag
+- Missing cross-references between clearly related pages → add the links
+
+## Identity.md Health Check
+
+Run this audit when `identity.md` Hard-Won Lessons exceeds 15 entries, or at the start of
+a new major engagement:
+
+1. For each Hard-Won Lessons entry, apply the routing test:
+   *"Would this principle still apply if the codebase, technology, or project changed completely?"*
+2. If **yes** — the entry belongs. Verify it has a `See:` link to any relevant mechanics page.
+3. If **no** — the entry is a mechanic masquerading as a principle. Move the content to the
+   appropriate `domain/` or `techniques/` page. Replace the entry with a one-line principle
+   plus a `See:` link, or remove it entirely.
+4. Target: **~8–15 entries** that are genuinely codebase-independent.
+
+After the audit, update `index.md` if any pages were created or significantly changed.
+
+## Index Maintenance
+
+`index.md` is your content catalog. Every page you create must have a row in the appropriate table.
+Keep summaries to one line. Update the index immediately when creating a new page.
+
+## Page Operations
+
+| Situation | Action |
+|-----------|--------|
+| New distinct concept | Create a new page in the appropriate directory |
+| Refinement, new example, corrected understanding | Update the existing page |
+| Page exceeds ~500 words covering multiple separable concepts | Split into two pages, update index |
+| Concept referenced from multiple places | Use wikilinks rather than duplicating content |
+| identity.md Hard-Won Lessons entry fails the routing test | Move mechanics to domain/ or techniques/; replace with principle + `See:` link |
+| identity.md Hard-Won Lessons exceeds 15 entries | Run the Identity.md Health Check |
+| Snapshot page entry is resolved or removed | Delete the entry; do not archive in place |
+
+## Cross-Reference Conventions
+
+- Same directory: `[[page_name]]` (e.g., `[[proving_model]]` from within `domain/`)
+- Cross-directory: `[[domain/topic]]`, `[[techniques/name]]`, `[[projects/name]]`
+- Core pages: `[[identity]]`, `[[log]]`, `[[index]]`
