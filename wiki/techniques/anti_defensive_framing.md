@@ -21,6 +21,7 @@ You're probably writing defensively if a sentence has any of these shapes:
 - "Use the X — you don't have to use the Y." (Implies Y was the obvious default.)
 - A callout that begins "**Don't do Z.**" before the reader has been given any reason to think Z was an option.
 - "Note that..." or "It's worth mentioning..." anchoring an objection that wasn't on the page yet.
+- A "what next" or "go deeper" link followed by a list of specifics ("status as ownership, GOAL.md as architectural record, when not to chunk") that name questions the reader hasn't yet had a chance to form. Just say "the X page goes deeper" and trust the reader to find what's relevant when they get there.
 
 ## The fix
 

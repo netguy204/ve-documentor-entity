@@ -57,6 +57,7 @@ that turns vibey intent into a clear architectural record.
 - "The skill is where vibey intent gets refined into a clear architectural record."
 - "Under the hood, the skill calls `ve chunk create` to instantiate the templates."
 - "Skills are the operator-facing surface; CLI commands are plumbing that instantiates templates the agent then edits."
+- "Brain-dump your intent to the agent and ask it to complete the templates." (The meta-pattern: agent decomposes operator-prose into template-structured output. Applies to skill-driven artifact creation *and* to filling in `docs/trunk/` after `ve init`. Whenever there are templates and the operator has rough intent, the brain-dump-to-agent flow is the right shape.)
 
 ## Where the pattern shows up
 

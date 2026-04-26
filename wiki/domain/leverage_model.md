@@ -115,6 +115,32 @@ during implementation. That would defeat the leverage point. The reader
 of these docs should expect to see code at PR time, with the orchestrator
 having handled everything in between.
 
+## Greenfield and legacy parity
+
+The Quickstart steps work the same on a brand-new project and on a
+legacy codebase being retrofitted. Operator has personally
+onboarded legacy projects via these steps and become productive
+immediately.
+
+The only difference is **when the orchestrator becomes safe**:
+
+- **Greenfield:** immediately. The architecture is reified from day
+  one; agents picking up new chunks have everything they need.
+- **Legacy:** after a few chunks of scaffolding. A clean trunk plus
+  a handful of chunks that stake out the parts of the architecture
+  the agent will reason about. Once that's in place, the orchestrator
+  works just as well on the legacy project.
+
+**Don't say:**
+- "ve is best on greenfield projects" or "ve is hard to retrofit."
+  (Wrong; legacy retrofit is a first-class path.)
+
+**Do say:**
+- "These steps work the same on a brand-new project and on a legacy
+  codebase you're retrofitting."
+- "Greenfield reaches the orchestrator immediately; legacy needs a
+  few chunks of scaffolding first."
+
 ## Where this shows up across docs
 
 - **Chunks page** (lifecycle intro): "Engineering isn't about writing code... most of the human effort of engineering with ve goes into building good ones. The boring typing gets deferred to agents."

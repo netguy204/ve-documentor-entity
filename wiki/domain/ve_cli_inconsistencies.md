@@ -17,6 +17,53 @@ When a pattern accumulates here, the project's own
 [friction log](../../../docs/trunk/FRICTION.md) is the right place to file it
 formally. This page is the working notebook.
 
+## What `ve init` actually creates (verified 2026-04-26)
+
+Important context I once got wrong in the Quickstart by listing
+`.claude/commands/` and `CLAUDE.md` as the agent surface:
+
+- `docs/trunk/` — GOAL, SPEC, DECISIONS, TESTING_PHILOSOPHY, ARTIFACTS,
+  EXTERNAL, FRICTION, ORCHESTRATOR
+- `docs/chunks/`, `docs/narratives/`, `docs/reviewers/baseline/`
+- **`AGENTS.md`** at the project root (not `CLAUDE.md`)
+- **`.agents/skills/<skill-name>/SKILL.md`** — the agents-standard
+  skill layout, one directory per skill
+- `.claude/commands/` — Claude Code's slash-command directory, also
+  rendered because Claude Code is the well-tested harness today
+- `.gitignore`
+
+**Harness framing for docs:** ve targets the agents standard
+(`AGENTS.md` + `.agents/skills/`) so any compliant harness can in
+principle drive the workflow. Claude Code is the only well-tested
+harness; other harnesses are works in progress. Always pair the
+agents-standard mention with this caveat in user-facing docs.
+
+## What `ve init` re-running actually does
+
+I once described `ve init` as "idempotent: existing files are not
+overwritten." That's wrong on both halves.
+
+Actual behavior:
+
+- **VE-managed files** (skill templates, command files, internal docs)
+  *are* overwritten on re-run. This is intentional — re-running
+  `ve init` is how a project picks up new versions of the workflow.
+- **Shared files** the user also edits (like `AGENTS.md`) use **marked
+  sections**: the regions owned by ve are overwritten on re-run, and
+  user content outside those markers is preserved. The
+  `migrate-managed-claude-md` skill exists to migrate legacy
+  un-markered files into this format.
+
+So `ve init` is **upgrade-aware**, not idempotent in the strict sense.
+Running it twice on the same version is idempotent; running it across
+versions brings updates in.
+
+**Don't say** in docs:
+- "`ve init` is idempotent. Existing files are not overwritten."
+
+**Do say:**
+- "`ve init` is safe to run repeatedly, and you should re-run it as new versions of ve ship. VE-managed files get the latest versions; shared files like `AGENTS.md` use marked sections so your additions are preserved."
+
 ## Verbs for "create a new artifact" are inconsistent
 
 Different artifact types use different verbs to mean the same thing:

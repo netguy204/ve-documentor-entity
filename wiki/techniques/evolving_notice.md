@@ -77,14 +77,27 @@ The body should land three points in two or three sentences:
 
 ## Where it lives in the docs
 
+Two placement modes:
+
+**Page-level** — the entire concept the page is about is evolving.
+Place the notice immediately after the `<h2>` and before the intro prose.
+
+**Inline / section-level** — a specific area within a stable doc is
+evolving. Place the notice next to the content it qualifies (e.g.,
+right after the bullet list or paragraph the warning attaches to).
+The default `margin: 0 0 var(--space-xl)` works inline because the
+preceding `<p>` or `<ul>` already supplies bottom spacing.
+
 Currently applied on:
-- `/docs/friction/` (the friction log's design is acknowledged as
+- `/docs/friction/` (page-level — the friction log's whole design is
   not-yet-final)
+- `/docs/` Quickstart (inline — within step 2, flagging that
+  multi-harness support is evolving even though the rest of the
+  Quickstart is stable)
 
 Other candidates as the project's stability surface evolves:
 - Any artifact type whose schema or workflow is openly being iterated on
 - Specific commands or skills that are likely to change behavior
 
-When adding to a new page, place the notice immediately after the page's
-`<h2>` and before the first prose paragraph. Don't bury it inside a
-section.
+Don't bury the notice deep inside a section. Either page-level (right
+after `<h2>`) or right next to the specific feature/list it qualifies.
